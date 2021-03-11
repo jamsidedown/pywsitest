@@ -5,6 +5,7 @@ import ssl
 from requests.exceptions import ConnectTimeout, ReadTimeout
 import websockets
 from websockets.client import WebSocketClientProtocol
+from websockets.typing import Data
 
 from .ws_message import WSMessage
 from .ws_response import WSResponse
@@ -76,27 +77,27 @@ class WSTest:  # noqa: pylint - too-many-instance-attributes
         assert ws_tester.is_complete()
     '''
 
-    def __init__(self, uri: str):
+    def __init__(self, uri: str) -> None:
         '''
         Parameters:
             uri (str): The uri of the websocket api
         '''
-        self.uri = uri
-        self.parameters = {}
-        self.headers = {}
-        self.messages = []
-        self.requests = []
-        self.sent_messages = []
-        self.sent_requests = []
-        self.expected_responses = []
-        self.received_responses = []
-        self.received_json = []
-        self.received_request_responses = []
-        self.response_timeout = 10.0
-        self.message_timeout = 10.0
-        self.request_timeout = 10.0
-        self.test_timeout = 60.0
-        self.log_responses_on_error = False
+        self.uri: str = uri
+        self.parameters: dict = {}
+        self.headers: dict = {}
+        self.messages: list = []
+        self.requests: list = []
+        self.sent_messages: list = []
+        self.sent_requests: list = []
+        self.expected_responses: list = []
+        self.received_responses: list = []
+        self.received_json: list = []
+        self.received_request_responses: list = []
+        self.response_timeout: float = 10.0
+        self.message_timeout: float = 10.0
+        self.request_timeout: float = 10.0
+        self.test_timeout: float = 60.0
+        self.log_responses_on_error: bool = False
 
     def with_parameter(self, key: str, value: object) -> 'WSTest':
         '''
@@ -229,7 +230,7 @@ class WSTest:  # noqa: pylint - too-many-instance-attributes
         self.requests.append(request)
         return self
 
-    async def run(self):
+    async def run(self) -> None:
         '''
         Runs the integration tests
         Sends any messages to the websocket
@@ -238,7 +239,7 @@ class WSTest:  # noqa: pylint - too-many-instance-attributes
         Raises:
             WSTimeoutError: If the test/sending/receiving fails to finish within the time limit
         '''
-        kwargs = {}
+        kwargs: dict = {}
         connection_string = self._get_connection_string()
 
         # add ssl if using wss
@@ -259,10 +260,10 @@ class WSTest:  # noqa: pylint - too-many-instance-attributes
         finally:
             await websocket.close()
 
-    async def _runner(self, websocket: WebSocketClientProtocol):
+    async def _runner(self, websocket: WebSocketClientProtocol) -> None:
         await asyncio.gather(self._receive(websocket), self._send(websocket), self._request())
 
-    async def _receive(self, websocket: WebSocketClientProtocol):
+    async def _receive(self, websocket: WebSocketClientProtocol) -> None:
         # iterate while there are still expected responses that haven't been received yet
         while self.expected_responses:
             try:
@@ -272,7 +273,7 @@ class WSTest:  # noqa: pylint - too-many-instance-attributes
                 error_message = self._get_receive_error_message()
                 raise WSTimeoutError(error_message) from ex
 
-    async def _receive_handler(self, websocket: WebSocketClientProtocol, response: str):
+    async def _receive_handler(self, websocket: WebSocketClientProtocol, response: Data) -> None:
         self.received_json.append(response)
         parsed_response = json.loads(response)
 
@@ -283,17 +284,18 @@ class WSTest:  # noqa: pylint - too-many-instance-attributes
                 await self._trigger_handler(websocket, expected_response, parsed_response)
                 break
 
-    async def _trigger_handler(self, websocket: WebSocketClientProtocol, response: WSResponse, raw_response: dict):
+    async def _trigger_handler(self, websocket: WebSocketClientProtocol, response: WSResponse,
+                               raw_response: dict) -> None:
         for message in response.triggers:
             message = message.resolve(raw_response)
             await self._send_handler(websocket, message)
 
-    async def _send(self, websocket: WebSocketClientProtocol):
+    async def _send(self, websocket: WebSocketClientProtocol) -> None:
         while self.messages:
             message = self.messages.pop(0)
             await self._send_handler(websocket, message)
 
-    async def _send_handler(self, websocket: WebSocketClientProtocol, message: WSMessage):
+    async def _send_handler(self, websocket: WebSocketClientProtocol, message: WSMessage) -> None:
         try:
             if message.delay:
                 await asyncio.sleep(message.delay)
@@ -303,12 +305,12 @@ class WSTest:  # noqa: pylint - too-many-instance-attributes
             error_message = 'Timed out trying to send message:\n' + str(message)
             raise WSTimeoutError(error_message) from ex
 
-    async def _request(self):
+    async def _request(self) -> None:
         while self.requests:
             request = self.requests.pop(0)
             await self._request_handler(request)
 
-    async def _request_handler(self, request: RestRequest):
+    async def _request_handler(self, request: RestRequest) -> None:
         try:
             if request.delay:
                 await asyncio.sleep(request.delay)

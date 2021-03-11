@@ -31,9 +31,9 @@ class WSResponse:
         )
     '''
 
-    def __init__(self):
-        self.attributes = {}
-        self.triggers = []
+    def __init__(self) -> None:
+        self.attributes: dict = {}
+        self.triggers: list = []
 
     def __str__(self) -> str:
         return json.dumps(self.attributes)

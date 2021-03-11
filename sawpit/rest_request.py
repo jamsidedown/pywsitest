@@ -1,4 +1,6 @@
+from typing import Any, Dict
 import requests
+from requests.models import Response
 
 
 class RestRequest:
@@ -33,17 +35,17 @@ class RestRequest:
         rest_request.send(10.0)
     '''
 
-    def __init__(self, uri: str, method: str):
+    def __init__(self, uri: str, method: str) -> None:
         '''
             Parameters:
                 uri (str): The uri of the rest api
                 method (str): The type/method of the request (get/post/patch/etc...)
         '''
-        self.uri = uri
-        self.method = method.casefold()
-        self.headers = {}
-        self.body = {}
-        self.delay = 0.0
+        self.uri: str = uri
+        self.method: str = method.casefold()
+        self.headers: dict = {}
+        self.body: dict = {}
+        self.delay: float = 0.0
 
     def with_header(self, key: str, value: str) -> 'RestRequest':
         '''
@@ -86,7 +88,7 @@ class RestRequest:
         self.delay = delay
         return self
 
-    def send(self, timeout: float):
+    def send(self, timeout: float) -> Response:
         '''
         Composes and sends the rest request
         Receives any responses from the api and returns that response
@@ -94,7 +96,8 @@ class RestRequest:
         Returns:
             (Response): An instance of a response object with the response of the rest api
         '''
-        kwargs = {'timeout': timeout}
+        kwargs: Dict[str, Any] = {'timeout': timeout}
+
         if self.headers:
             kwargs['headers'] = self.headers
         if self.body:

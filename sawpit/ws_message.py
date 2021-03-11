@@ -25,9 +25,9 @@ class WSMessage:
         )
     '''
 
-    def __init__(self):
-        self.attributes = {}
-        self.delay = 0.0
+    def __init__(self) -> None:
+        self.attributes: dict = {}
+        self.delay: float = 0.0
 
     def __str__(self) -> str:
         # Output the attributes dictionary as json
