@@ -1,3 +1,4 @@
+[![Build](https://github.com/jamsidedown/sawpit/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/jamsidedown/sawpit/actions/workflows/python-package.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 # sawpit
@@ -26,18 +27,18 @@ WSTest is the main test running class in sawpit. It currently has the following 
 - **run**: asyncronously run the test runner, sending all messages and listening for responses
 - **is_complete**: check whether all expected responses have been received and messages have been sent
 
-### [WSResponse](https://github.com/jamsidedown/sawpit/blob/master/sawpit/ws_response.py)
+### [WSResponse](https://github.com/jamsidedown/sawpit/blob/main/sawpit/ws_response.py)
 WSResponse is a class to represent an expected response from the websocket
 - **with_attribute**: add an attribute to check an incoming response against
 - **with_trigger**: add a message to trigger when a response matching this instance has been received
 - **is_match**: check whether a received response matches the attributes of this instance
 
-### [WSMessage](https://github.com/jamsidedown/sawpit/blob/master/sawpit/ws_message.py)
+### [WSMessage](https://github.com/jamsidedown/sawpit/blob/main/sawpit/ws_message.py)
 WSMessage is a class to represent a message to send to the websocket
 - **with_attribute**: add an attribute to the message to be sent to the websocket host
 - **with_delay**: add a delay to the message to be sent to the websocket host
 
-### [RestRequest](https://github.com/jamsidedown/sawpit/blob/master/sawpit/rest_request.py)
+### [RestRequest](https://github.com/jamsidedown/sawpit/blob/main/sawpit/rest_request.py)
 RestRequest is a class to represent a request to send to rest api
 - **with_header**: add a header to the request to be sent to the rest api
 - **with_body**: add a body to the request to be sent to the rest api

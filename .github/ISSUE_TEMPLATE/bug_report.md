@@ -29,8 +29,8 @@ If applicable, add screenshots to help explain your problem.
 **Environment information:**
  - OS: [e.g. iOS]
  - Python version
-- pywsitest verison number
-- Information about the websocket host (optional)
+ - sawpit verison number
+ - Information about the websocket host (optional)
 
 **Additional context**
 Add any other context about the problem here.

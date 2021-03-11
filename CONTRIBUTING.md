@@ -6,8 +6,8 @@ This project requires Python 3, all of the initial development has been done usi
 
 If you want to work on that change, fork this Github repo and clone the fork locally
 ```sh
-git clone https://github.com/<your_username>/pywsitest
-cd pywsitest
+git clone https://github.com/<your_username>/sawpit
+cd sawpit
 ```
 
 Set up a virtual environment and install all dependencies
@@ -17,27 +17,14 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-To run unit tests
+In order for changes to be accepted, all unit tests need to be passing
 ```sh
 python -m unittest
 ```
 
-In order for changes to be accepted, Grid Smarter Cities requires that all code pass a series of tests
-
-Firstly we require all unit tests to be passing, and that test coverage is 100%
-```sh
-coverage run --branch --source='.' -m unittest
-coverage report -m --fail-under=100 --omit=*/__init__.py,tests/*,setup.py,env/*
-```
-
-We require all code to adhere to our linting style as defined in [pylintrc](https://github.com/gridsmartercities/pywsitest/blob/master/pylintrc)
+And all code to adhere to the linting style as defined in [pylintrc](https://github.com/jamsidedown/sawpit/blob/main/pylintrc)
 ```sh
 prospector
-```
-
-And lastly that [Bandit](https://pypi.org/project/bandit/) security checks pass
-```sh
-bandit -r . -x env/
 ```
 
 Once the changes are finished and the criteria for merging are met, simply create a pull request all it'll be reviewed as soon as possible
