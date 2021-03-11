@@ -1,4 +1,4 @@
-__all__ = ["WSTest", "WSResponse", "WSMessage", "WSTimeoutError", "RestRequest"]
+__all__ = ['WSTest', 'WSResponse', 'WSMessage', 'WSTimeoutError', 'RestRequest']
 
 from .ws_message import WSMessage
 from .ws_response import WSResponse

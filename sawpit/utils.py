@@ -1,14 +1,14 @@
 import re
-from typing import List, Tuple, Union
+from typing import Tuple, Union
 
 
-PATH_REGEX = re.compile(r"^\$\{(.*)\}$")
+PATH_REGEX = re.compile(r'^\$\{(.*)\}$')
 
 
 # disable required until pylint is fixed for Python 3.9
 # pylint:disable=unsubscriptable-object
-def get_resolved_values(response: Union[dict, list], path: str) -> List[object]:
-    """
+def get_resolved_values(response: Union[dict, list], path: str) -> list:
+    '''
     Retrieves a list of values from a dictionary at a given path
 
     Parameters:
@@ -17,13 +17,13 @@ def get_resolved_values(response: Union[dict, list], path: str) -> List[object]:
 
     Returns:
         (list[object]): The list of objects at a given path, empty if the path can't be found
-    """
+    '''
     resolved = [response]
 
-    if path.startswith("/"):
+    if path.startswith('/'):
         path = path[1:]
 
-    for part in path.split("/"):
+    for part in path.split('/'):
         # iterate to count rather than over objects as objects can be updated in-place
         count = len(resolved)
         for i in range(count):

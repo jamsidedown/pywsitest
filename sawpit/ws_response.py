@@ -5,7 +5,7 @@ from .ws_message import WSMessage
 
 
 class WSResponse:
-    """
+    '''
     A class representing an expected message to be received through the websocket
 
     Attributes:
@@ -23,13 +23,13 @@ class WSResponse:
     Usage:
         response = (
             WSResponse()
-            .with_attribute("type", "example")
-            .with_attribute("body")
+            .with_attribute('type', 'example')
+            .with_attribute('body')
             .with_trigger(
                 WSMessage()
             )
         )
-    """
+    '''
 
     def __init__(self):
         self.attributes = {}
@@ -38,8 +38,8 @@ class WSResponse:
     def __str__(self) -> str:
         return json.dumps(self.attributes)
 
-    def with_attribute(self, attribute: str, value: object = None) -> "WSResponse":
-        """
+    def with_attribute(self, attribute: str, value: object = None) -> 'WSResponse':
+        '''
         Adds a key/value pair to the attributes dictionary
 
         Parameters:
@@ -48,12 +48,12 @@ class WSResponse:
 
         Returns:
             (WSResponse): The WSResponse instance with_attribute was called on
-        """
+        '''
         self.attributes[attribute] = value
         return self
 
-    def with_trigger(self, message: WSMessage) -> "WSResponse":
-        """
+    def with_trigger(self, message: WSMessage) -> 'WSResponse':
+        '''
         Adds a trigger to the triggers list
 
         Parameters:
@@ -61,12 +61,12 @@ class WSResponse:
 
         Returns:
             (WSResponse): The WSResponse instance with_trigger was called on
-        """
+        '''
         self.triggers.append(message)
         return self
 
     def is_match(self, response: dict) -> bool:
-        """
+        '''
         Checks if this WSResponse instance matches an input response by checking all attributes are present
 
         Parameters:
@@ -74,7 +74,7 @@ class WSResponse:
 
         Returns:
             (bool): True if the response matches based on the attributes
-        """
+        '''
         for key in self.attributes:
             resolved_values = get_resolved_values(response, key)
 

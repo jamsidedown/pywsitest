@@ -1,6 +1,5 @@
 prospector
-coverage
-bandit
 pylint_quotes
 websockets
 requests
+mypy

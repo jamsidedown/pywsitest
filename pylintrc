@@ -467,13 +467,13 @@ variable-naming-style=snake_case
 [STRING_QUOTES]
 
 # The quote character for triple-quoted docstrings.
-docstring-quote=double
+docstring-quote=single
 
 # The quote character for string literals.
-string-quote=double
+string-quote=single
 
 # The quote character for triple-quoted strings (non-docstring).
-triple-quote=double
+triple-quote=single
 
 
 [IMPORTS]

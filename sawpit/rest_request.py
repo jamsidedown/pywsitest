@@ -2,7 +2,7 @@ import requests
 
 
 class RestRequest:
-    """
+    '''
     A class representing a rest request
 
     Attributes:
@@ -24,29 +24,29 @@ class RestRequest:
 
     Usage:
         rest_request = (
-            RestRequest("https://example.com", "POST")
-            .with_header("Authorization", "jwt_token")
-            .with_body({"abc": 123})
+            RestRequest('https://example.com', 'POST')
+            .with_header('Authorization', 'jwt_token')
+            .with_body({'abc': 123})
             .with_delay(1.0)
         )
 
         rest_request.send(10.0)
-    """
+    '''
 
     def __init__(self, uri: str, method: str):
-        """
+        '''
             Parameters:
                 uri (str): The uri of the rest api
                 method (str): The type/method of the request (get/post/patch/etc...)
-        """
+        '''
         self.uri = uri
         self.method = method.casefold()
         self.headers = {}
         self.body = {}
         self.delay = 0.0
 
-    def with_header(self, key: str, value: str) -> "RestRequest":
-        """
+    def with_header(self, key: str, value: str) -> 'RestRequest':
+        '''
         Adds a key/value pair to the header dictionary
         Headers are standard rest api request headers
 
@@ -56,12 +56,12 @@ class RestRequest:
 
         Returns:
             (RestRequest): The RestRequest instance with_header was called on
-        """
+        '''
         self.headers[key] = value
         return self
 
-    def with_body(self, body: dict) -> "RestRequest":
-        """
+    def with_body(self, body: dict) -> 'RestRequest':
+        '''
         Adds a dictionary representing request body
 
         Parameters:
@@ -69,12 +69,12 @@ class RestRequest:
 
         Returns:
             (RestRequest): The RestRequest instance with_body was called on
-        """
+        '''
         self.body = body
         return self
 
-    def with_delay(self, delay: float) -> "RestRequest":
-        """
+    def with_delay(self, delay: float) -> 'RestRequest':
+        '''
         Adds a delay to the rest request
 
         Parameters:
@@ -82,22 +82,22 @@ class RestRequest:
 
         Returns:
             (RestRequest): The RestRequest instance with_delay was called on
-        """
+        '''
         self.delay = delay
         return self
 
     def send(self, timeout: float):
-        """
+        '''
         Composes and sends the rest request
         Receives any responses from the api and returns that response
 
         Returns:
             (Response): An instance of a response object with the response of the rest api
-        """
-        kwargs = {"timeout": timeout}
+        '''
+        kwargs = {'timeout': timeout}
         if self.headers:
-            kwargs["headers"] = self.headers
+            kwargs['headers'] = self.headers
         if self.body:
-            kwargs["json"] = self.body
+            kwargs['json'] = self.body
 
         return requests.request(self.method, self.uri, **kwargs)

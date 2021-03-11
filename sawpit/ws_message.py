@@ -4,7 +4,7 @@ from .utils import get_resolved_values, PATH_REGEX
 
 
 class WSMessage:
-    """
+    '''
     A class representing a message to send through the websocket
 
     Attributes:
@@ -21,9 +21,9 @@ class WSMessage:
     Usage:
         message = (
             WSMessage()
-            .with_attribute("test", "example")
+            .with_attribute('test', 'example')
         )
-    """
+    '''
 
     def __init__(self):
         self.attributes = {}
@@ -33,8 +33,8 @@ class WSMessage:
         # Output the attributes dictionary as json
         return json.dumps(self.attributes)
 
-    def with_attribute(self, key: str, value: object) -> "WSMessage":
-        """
+    def with_attribute(self, key: str, value: object) -> 'WSMessage':
+        '''
         Adds a key/value pair to the attributes dictionary
 
         Parameters:
@@ -43,12 +43,12 @@ class WSMessage:
 
         Returns:
             (WSMessage): The WSMessage instance with_attribute was called on
-        """
+        '''
         self.attributes[key] = value
         return self
 
-    def with_delay(self, delay: float) -> "WSMessage":
-        """
+    def with_delay(self, delay: float) -> 'WSMessage':
+        '''
         Adds a delay (in seconds) to the message sending
 
         Parameters:
@@ -56,12 +56,12 @@ class WSMessage:
 
         Returns:
             (WSMessage): The WSMessage instance with_delay was called on
-        """
+        '''
         self.delay = delay
         return self
 
-    def resolve(self, response: dict) -> "WSMessage":
-        """
+    def resolve(self, response: dict) -> 'WSMessage':
+        '''
         Resolves attributes using ${path/to/property} notation with response as the source
 
         Parameters:
@@ -69,7 +69,7 @@ class WSMessage:
 
         Returns:
             (WSMessage): The WSMessage instance resolve was called on
-        """
+        '''
         for key in self.attributes:
             value = self.attributes[key]
             match = PATH_REGEX.match(str(value))
