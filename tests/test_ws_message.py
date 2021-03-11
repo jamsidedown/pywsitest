@@ -1,6 +1,6 @@
 import unittest
 
-from pywsitest import WSMessage
+from sawpit import WSMessage
 
 
 class WSMessageTests(unittest.TestCase):

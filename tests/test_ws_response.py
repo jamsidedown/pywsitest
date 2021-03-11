@@ -1,6 +1,6 @@
 import unittest
 
-from pywsitest import WSResponse, WSMessage
+from sawpit import WSResponse, WSMessage
 
 
 class WSResponseTests(unittest.TestCase):  # noqa: pylint - too-many-public-methods

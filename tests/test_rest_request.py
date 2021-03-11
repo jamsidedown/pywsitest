@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, MagicMock
 
-from pywsitest import RestRequest
+from sawpit import RestRequest
 
 
 class RestRequestTests(unittest.TestCase):

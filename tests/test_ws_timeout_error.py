@@ -1,6 +1,6 @@
 import unittest
 
-from pywsitest import WSTimeoutError
+from sawpit import WSTimeoutError
 
 
 class WSTimeoutErrorTests(unittest.TestCase):

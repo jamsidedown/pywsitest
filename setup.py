@@ -3,14 +3,14 @@ from setuptools import setup, find_packages
 
 LONG_DESCRIPTION = open("README.md").read()
 
-setup(name="pywsitest",
-      version="0.3.3",
-      description="PYthon WebSocket Integration TESTing framework",
+setup(name="sawpit",
+      version="0.0.1",
+      description="Work in progress fork of pywsitest",
       long_description=LONG_DESCRIPTION,
       long_description_content_type="text/markdown",
-      url="https://github.com/gridsmartercities/pywsitest",
-      author="Grid Smarter Cities",
-      author_email="open-source@gridsmartercities.com",
+      url="https://github.com/jamsidedown/sawpit",
+      author="Rob Anderson",
+      author_email="opensource@robanderson.dev",
       license="MIT",
       classifiers=[
           "Intended Audience :: Developers",

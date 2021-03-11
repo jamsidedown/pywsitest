@@ -4,7 +4,8 @@ import unittest
 from unittest.mock import patch, MagicMock
 
 from requests.exceptions import ConnectTimeout
-from pywsitest import WSTest, WSResponse, WSMessage, WSTimeoutError, RestRequest
+
+from sawpit import WSTest, WSResponse, WSMessage, WSTimeoutError, RestRequest
 
 
 def syncify(coro):
