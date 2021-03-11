@@ -1,4 +1,4 @@
-[![Build](https://github.com/jamsidedown/sawpit/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/jamsidedown/sawpit/actions/workflows/python-package.yml)
+[![Build status](https://github.com/jamsidedown/sawpit/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/jamsidedown/sawpit/actions/workflows/python-package.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 # sawpit
